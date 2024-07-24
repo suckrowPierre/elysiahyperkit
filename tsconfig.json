@@ -7,16 +7,17 @@
     "jsx": "react",
     "jsxFactory": "elements.createElement",
     "allowJs": true,
-
-    /* Bundler mode */
-    "moduleResolution": "bundler",
+    "moduleResolution": "node",
     "allowImportingTsExtensions": true,
     "verbatimModuleSyntax": true,
-    "noEmit": true,
-
-    /* Linting */
     "strict": true,
     "skipLibCheck": true,
     "noFallthroughCasesInSwitch": true,
-  }
+    "declaration": true,
+    "outDir": "./dist",
+    "declarationMap": true,
+    "typeRoots": ["./node_modules/@types", "./src/types"],
+    "types": ["node"]
+  },
+  "include": ["src/**/*"]
 }

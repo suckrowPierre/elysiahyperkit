@@ -3,20 +3,21 @@ import {html} from "@elysiajs/html";
 import {staticPlugin} from '@elysiajs/static'
 import {cors} from '@elysiajs/cors'
 import {Route, RequestType} from "./routing/route";
+import type {AppParams} from "./util";
+import { SiteType } from "./util";
 
-export {Route, RequestType};
+export type { AppParams };
+export {Route, RequestType, SiteType};
 
 export type { ServiceParams } from "./services/helpers";
 export { destructServiceArgs, getFormFromRequest } from "./services/helpers";
 
+export type {ExtendedComponentParams, ComponentParams} from "./templates/templates";
+export {BaseHTML} from "./templates/templates";
 
-export interface AppParams {
-    port: number;
-    cors?: boolean;
-    staticDir?: boolean;
-    routes: Route[]
-    routeArgs?: any
-}
+
+
+
 
 export class App {
     private app: any;
