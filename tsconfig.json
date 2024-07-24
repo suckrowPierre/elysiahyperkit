@@ -1,23 +1,33 @@
 {
   "compilerOptions": {
-    "lib": ["ESNext"],
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "baseUrl": "./",
+    "paths": {
+      "@/*": [
+        "src/*"
+      ]
+    },
+    "lib": [
+      "ESNext"
+    ],
     "target": "ESNext",
     "module": "ESNext",
+    "moduleResolution": "bundler",
     "moduleDetection": "force",
+    "allowImportingTsExtensions": true,
+    "noEmit": true,
+    "composite": true,
     "jsx": "react",
     "jsxFactory": "elements.createElement",
     "allowJs": true,
-    "moduleResolution": "node",
-    "allowImportingTsExtensions": true,
-    "verbatimModuleSyntax": true,
-    "strict": true,
-    "skipLibCheck": true,
-    "noFallthroughCasesInSwitch": true,
-    "declaration": true,
-    "outDir": "./dist",
-    "declarationMap": true,
-    "typeRoots": ["./node_modules/@types", "./src/types"],
-    "types": ["node"]
+    "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true,
+    "types": [
+      "bun-types"
+    ]
   },
-  "include": ["src/**/*"]
+  "include": [
+    "src/**/*.ts"
+  ]
 }
