@@ -7,12 +7,23 @@
   "version": "1.0.0",
   "description": "A library for Bun Elysia Hyperscript (HTMX or Static) sites",
   "scripts": {
-    "build": "bun build --target=node ./src/index.ts --outfile=dist/index.js",
-    "build:declaration": "tsc --emitDeclarationOnly --project tsconfig.types.json",
+    "build": "bun src/build.ts",
+    "build_and_link": "bun run build && bun link",
     "postbuild": "rimraf tsconfig.types.tsbuildinfo"
+  },
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./routing": {
+      "import": "./dist/routing.js",
+      "types": "./dist/routing.d.ts"
+    }
   },
   "devDependencies": {
     "@types/bun": "latest",
+    "bun-plugin-dts": "^0.2.3",
     "prettier": "^3.0.3",
     "rimraf": "^5.0.5",
     "typescript": "^5.5.4"
@@ -24,6 +35,8 @@
     "@elysiajs/cors": "^0.8.0",
     "@elysiajs/html": "^0.8.0",
     "@elysiajs/static": "^0.8.1",
+    "@types/node": "^20.14.12",
+    "bun-types": "^1.1.20",
     "elysia": "^0.8.17",
     "typed-html": "^3.0.1",
     "yup": "^1.3.3"
