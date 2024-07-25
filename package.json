@@ -19,6 +19,10 @@
     "./routing": {
       "import": "./dist/routing.js",
       "types": "./dist/routing.d.ts"
+    },
+    "./services": {
+      "import": "./dist/services.js",
+      "types": "./dist/services.d.ts"
     }
   },
   "devDependencies": {

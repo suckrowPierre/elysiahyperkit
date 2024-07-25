@@ -10,3 +10,10 @@ export interface AppParams {
     siteType: SiteType
     hyperScript?: boolean
 }
+
+export interface ServiceParams {
+    additionalArgs: any,
+    request: any,
+    html: any,
+    params?: any,
+};
