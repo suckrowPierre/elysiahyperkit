@@ -15,3 +15,13 @@ export class Route {
         app[this.requestType.toLowerCase()](this.endpoint, this.service.bind(this, routeArgs));
     }
 }
+
+export class Page extends Route {
+    title: string;
+    showInNavbar: boolean;
+    constructor(endpoint: string, service: any, title: string, showInNavbar: boolean) {
+        super(RequestType.GET, endpoint, service);
+        this.title = title;
+        this.showInNavbar = showInNavbar;
+    }
+}

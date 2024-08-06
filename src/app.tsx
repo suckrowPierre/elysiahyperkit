@@ -2,8 +2,9 @@ import {Elysia} from "elysia";
 import {html} from "@elysiajs/html";
 import {staticPlugin} from '@elysiajs/static'
 import {cors} from '@elysiajs/cors'
-import {AppParams} from "./types/interfaces";
+import {AppParams, AppSettings} from "./types/interfaces";
 import {Route} from "@/routing/route";
+import {initializeSettings} from "@/appSettings";
 
 export class App {
     private app: any;
@@ -12,6 +13,9 @@ export class App {
     constructor(params: AppParams, customCors?: any) {
         this.port = params.port;
         this.app = new Elysia().use(html());
+        const appSettings = params;
+        initializeSettings(appSettings);
+
 
         if (params.staticDir) {
             this.app.use(staticPlugin())

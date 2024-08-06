@@ -22,5 +22,5 @@
     "types": ["bun-types", "@types/node"],
     "skipLibCheck": true,
   },
-  "include": ["src/**/*.ts"]
+  "include": ["src/**/*.ts", "src/**/*.tsx"],
 }
