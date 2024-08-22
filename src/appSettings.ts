@@ -2,7 +2,7 @@ import { AppSettings } from "./types/interfaces";
 
 let appSettings: AppSettings;
 
-export const initializeSettings = (settings: AppSettings) => {
+export const initializeSettings = async (settings: AppSettings): Promise<void> => {
     appSettings = settings;
 }
 

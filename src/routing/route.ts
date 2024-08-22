@@ -1,4 +1,4 @@
-import {RequestType} from "@/types/enums";
+import { RequestType } from "@/types/enums";
 
 export class Route {
     endpoint: string;

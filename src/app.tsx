@@ -4,17 +4,16 @@ import {staticPlugin} from '@elysiajs/static'
 import {cors} from '@elysiajs/cors'
 import {AppParams, AppSettings} from "./types/interfaces";
 import {Route} from "@/routing/route";
-import {initializeSettings} from "@/appSettings";
+import {getSettings, initializeSettings} from "@/appSettings";
 
 export class App {
     private app: any;
-    private readonly port: number;
+    private appParams: AppParams;
 
     constructor(params: AppParams, customCors?: any) {
-        this.port = params.port;
         this.app = new Elysia().use(html());
-        const appSettings = params;
-        initializeSettings(appSettings);
+        this.appParams = params;
+        initializeSettings(params as AppSettings);
 
 
         if (params.staticDir) {
@@ -31,17 +30,25 @@ export class App {
             };
             this.app.use(cors(corsOptions));
         }
+    }
 
-        params.routes.forEach(route => {
+    setRoutes(routes: Route[]) {
+        routes.forEach(route => {
             if (!(route instanceof Route)) {
                 throw new Error('Route is not an instance of Route');
             }
-            route.register(this.app, params.routeArgs);
+            route.register(this.app, this.appParams.routeArgs);
         });
+        return this;
+    }
+
+    use(plugin: any) {
+        this.app.use(plugin);
+        return this;
     }
 
     start() {
-        this.app.listen(this.port)
+        this.app.listen(this.appParams.port)
         console.log(`Server is running at http://${this.app.server?.hostname}:${this.app.server?.port}`);
     }
 }

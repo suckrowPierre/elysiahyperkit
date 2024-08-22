@@ -12,7 +12,7 @@ await Bun.build({
         target: 'bun',
         plugins: [dts()],
         splitting: true,
-        sourcemap: 'inline',
+        //sourcemap: 'inline',
         //minify: true,
     }
 )

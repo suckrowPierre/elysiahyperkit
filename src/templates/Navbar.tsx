@@ -1,28 +1,42 @@
 import {Page} from "@/routing/route";
-import {ComponentParams} from "@/types/interfaces";
 import * as elements from "typed-html";
-import {getSettings} from "@/appSettings";
+import {Attributes, CustomElementHandler} from "typed-html"
+import {HtmxOrStaticLink} from "@/templates/Link";
 
-
-interface NavbarParams extends ComponentParams {
+interface NavbarParams {
     pages: Page[];
     ListWrapper: any;
     ListElement: any;
 }
 
-
-export const Navbar = (params: NavbarParams) => {
-    const pagesToShow = params.pages.filter(page =>
-        page.showInNavbar
-    );
-    const ListWrapper = params.ListWrapper;
-    const ListElement = params.ListElement;
+export const NavbarLink = ({ page, ...attributes }: Attributes & { page: Page }) => {
+    if (!page){
+        throw new Error("Page is undefined")
+    }
     return (
-        <nav class={params.classes ? params.classes : ""} id={params.id ? params.id : ""} _={params.hyperScript && getSettings().hyperScript ? params.hyperScript.toString() : ""}>
+    <HtmxOrStaticLink endpoint={page.endpoint} {...attributes}>
+        {page.title}
+    </HtmxOrStaticLink>
+)};
+
+export const Navbar = ({
+                           pages,
+                           ListWrapper,
+                           ListElement,
+                           LinkElement,
+                           children,
+                           ...attributes
+    }: Attributes & NavbarParams) => {
+    const pagesToShow = pages.filter((page) => page.showInNavbar);
+
+    return (
+        <nav {...attributes}>
             <ListWrapper>
                     {pagesToShow.map(page => (
                         <ListElement>
-                                <a href={page.endpoint}>{page.title}</a>
+                            <LinkElement page={page}>
+                                {page.title}
+                            </LinkElement>
                         </ListElement>
                     )).join("")}
             </ListWrapper>
