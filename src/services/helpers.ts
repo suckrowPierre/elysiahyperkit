@@ -26,3 +26,7 @@ export const getFormFromRequest = async (request: any): Promise<Record<string, a
 
     return formData;
 }
+
+export const isHTMXRequest = (request: any): boolean => {
+    return request.headers.get("HX-Request") === "true";
+}
