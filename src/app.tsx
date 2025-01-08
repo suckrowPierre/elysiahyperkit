@@ -5,6 +5,8 @@ import {cors} from '@elysiajs/cors'
 import {AppParams, AppSettings} from "./types/interfaces";
 import {Route} from "@/routing/route";
 import {getSettings, initializeSettings} from "@/appSettings";
+import * as fs from "fs";
+import path from "path";
 
 export class App {
     private app: any;
